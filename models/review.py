@@ -9,6 +9,7 @@ from sqlalchemy import Column, String, ForeignKey
 
 class Review(BaseModel, Base):
     """Representation of Review """
+    __table_args__ = ({'mysql_default_charset': 'latin1'})
     if models.storage_t == 'db':
         __tablename__ = 'reviews'
         place_id = Column(String(60), ForeignKey('places.id'), nullable=False)

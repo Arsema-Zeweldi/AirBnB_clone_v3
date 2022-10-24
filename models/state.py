@@ -11,6 +11,7 @@ from sqlalchemy.orm import relationship
 
 class State(BaseModel, Base):
     """Representation of state """
+    __table_args__ = ({'mysql_default_charset': 'latin1'})
     if models.storage_t == "db":
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
