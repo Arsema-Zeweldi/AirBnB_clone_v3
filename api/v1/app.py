@@ -3,7 +3,7 @@
 API
 """
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 app = Flask(__name__)
@@ -14,6 +14,13 @@ app.register_blueprint(app_views)
 def teardown(self):
     """method to handle @app.teardown_appcontext"""
     storage.close()
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """ 404 errors """
+    status = {"error": "Not found"}
+    return jsonify(status), 404
 
 
 if __name__ == "__main__":
